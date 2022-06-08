@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using Beetee.Task.Repository.Models;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Beetee.Task.Repository.Impl
 {
     public class BaseRepository<T> : IBaseRepository<T>
-        where T : class
+        where T : AbstractEntity
     {
         private readonly DatabaseContext dbContext;
 
