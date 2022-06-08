@@ -2,5 +2,5 @@
 
 namespace Beetee.Task.Repository
 {
-    interface IEmployeeRepository : IBaseRepository<Employee> { }
+    public interface IEmployeeRepository : IBaseRepository<Employee> { }
 }

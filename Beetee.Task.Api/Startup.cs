@@ -1,4 +1,5 @@
 using Beetee.Task.Repository;
+using Beetee.Task.Repository.Impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ namespace Beetee.Task.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddDbContext<DatabaseContext>(con => con.UseSqlServer(DataOptions.ConnectionString));
             services.AddScoped<DbContext, DatabaseContext>();
             services.AddControllers();
