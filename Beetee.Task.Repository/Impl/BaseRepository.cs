@@ -14,6 +14,34 @@ namespace Beetee.Task.Repository.Impl
             this.dbContext = dbContext;
         }
 
+        public IQueryable<T> GetAll()
+        {
+            return dbContext.Set<T>();
+        }
+
+        public T GetById(int id)
+        {
+            return dbContext.Set<T>().Find(id);
+        }
+
+        public void Add(T model)
+        {
+            dbContext.Set<T>().Add(model);
+            dbContext.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            dbContext.Set<T>().Remove(GetById(id));
+            dbContext.SaveChanges();
+        }
+
+        public void Update(T model)
+        {
+            dbContext.Set<T>().Update(model);
+            dbContext.SaveChanges();
+        }
+
         public async ValueTask AddAsync(T model)
         {
             dbContext.Set<T>().Add(model);
