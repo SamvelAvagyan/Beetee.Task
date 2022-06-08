@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Beetee.Task.Repository;
+using Beetee.Task.Repository.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,36 +12,46 @@ namespace Beetee.Task.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        private readonly IEmployeeRepository employeeRepository;
+
+        public EmployeeController(IEmployeeRepository employeeRepository)
+        {
+            this.employeeRepository = employeeRepository;
+        }
+
         // GET: api/<EmployeeController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Employee>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await employeeRepository.GetAllAsync();
         }
 
         // GET api/<EmployeeController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Employee> Get(int id)
         {
-            return "value";
+            return await employeeRepository.GetByIdAsync(id);
         }
 
         // POST api/<EmployeeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async ValueTask Post([FromBody] Employee value)
         {
+            await employeeRepository.AddAsync(value);
         }
 
         // PUT api/<EmployeeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async ValueTask Put([FromBody] Employee value)
         {
+            await employeeRepository.UpdateAsync(value);
         }
 
         // DELETE api/<EmployeeController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async ValueTask Delete(int id)
         {
+            await employeeRepository.DeleteAsync(id);
         }
     }
 }
