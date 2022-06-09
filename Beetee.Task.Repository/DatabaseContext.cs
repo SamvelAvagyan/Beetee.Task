@@ -10,5 +10,6 @@ namespace Beetee.Task.Repository
         { }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<HumanResource> HumanResources { get; set; }
     }
 }
