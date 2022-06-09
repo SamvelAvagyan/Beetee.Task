@@ -24,6 +24,7 @@ namespace Beetee.Task.Api
         {
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IHumanResourceRepository, HumanResourceRepository>();
             services.AddDbContext<DatabaseContext>(con => con.UseSqlServer(DataOptions.ConnectionString));
             services.AddScoped<DbContext, DatabaseContext>();
             services.AddControllers();
