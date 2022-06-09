@@ -5,6 +5,6 @@
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
         public int Salary { get; set; }
-        public string SocialSecurityNumbe { get; set; }
+        public string SocialSecurityNumber { get; set; }
     }
 }
