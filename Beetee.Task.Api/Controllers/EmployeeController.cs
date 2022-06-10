@@ -53,5 +53,12 @@ namespace Beetee.Task.Api.Controllers
         {
             await employeeRepository.DeleteAsync(id);
         }
+
+        // GET api/<EmployeeController>/GetEmail/5
+        [HttpGet("GetEmail/{id}")]
+        public async Task<string> GetEmail(int id)
+        {
+            return await employeeRepository.GetEmailByIdAsync(id);
+        }
     }
 }
